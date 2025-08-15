@@ -80,10 +80,37 @@ nav .container {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
     color: white;
     position: relative;
     overflow: hidden;
+}
+
+/* Rotating background image */
+.background.animation {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    animation: rotate360 10s linear infinite;
+}
+
+.background.animation img {
+    width: 700;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0.3;
+}
+
+/* Keyframe for continuous rotation */
+@keyframes rotate360 {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
 }
 
 .hero::before {
@@ -99,7 +126,7 @@ nav .container {
 
 .hero-content {
     position: relative;
-    z-index: 2;
+    z-index: 10;
     animation: fadeInUp 1s ease-out;
 }
 
@@ -148,6 +175,14 @@ nav .container {
 /* Sections */
 .section {
     padding: 5rem 0;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .section-title {
@@ -458,7 +493,9 @@ footer {
 }
 
 .fade-in-up {
-    animation: fadeInUp 0.6s ease-out;
+    animation: fadeInUp 1s ease-out;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
 }
 
 /* Responsive Design */
@@ -511,6 +548,11 @@ footer {
     .container {
         padding: 0 1rem;
     }
+
+    .background.animation img {
+        width: 250px;
+        height: 250px;
+    }
 }
 
 /* Smooth scrolling */
@@ -519,6 +561,6 @@ html {
 }
 
 /* Section padding adjustment for fixed nav */
-.section {
+/* .section {
     scroll-margin-top: 80px;
-}
+} */
